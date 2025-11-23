@@ -1,137 +1,302 @@
-.bg-pastel {
-  background-color: #fff5f8;
+/* =========================================
+   PALETA DE COLORES PASTEL
+   ========================================= */
+:root {
+  --rosa: #ffb7ce;
+  --rosa-suave: #ffe3ec;
+  --blanco: #ffffff;
+  --gris: #8f8f8f;
+  --gris-claro: #e8e8e8;
+  --sombras: rgba(0, 0, 0, 0.08);
+  --negro-suave: #3d3d3d;
+  --rojo-btn: #ff6b8a;
 }
 
-.btn-pastel {
-  background-color: #ffb6c1;
-  color: white;
-  border: none;
+/* =========================================
+   RESETEO BASICO
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-.btn-pastel:hover {
-  background-color: #ff90b0;
-  color: white;
+body {
+  background: #fff7fa;
+  color: var(--negro-suave);
 }
 
-.card {
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-input:focus, select:focus {
-  box-shadow: none;
-  border-color: #ffb6c1;
-}
-
-.carrito-item {
+/* =========================================
+   HEADER
+   ========================================= */
+header {
+  background: var(--rosa);
+  padding: 18px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
-  margin-bottom: 6px;
-  border-radius: 8px;
-  background-color: #ffe4ec;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0 3px 10px var(--sombras);
 }
 
-.carrito-item button {
-  background-color: #ff90b0;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 6px;
-  color: white;
-}
-
-.carrito-item button:hover {
-  background-color: #ff6f91;
-}
-
-/* Botón principal */
-.btn-primary {
-  background: linear-gradient(to right, #ff69b4, #ff1493);
-  border: none;
-  color: white;
+header h1 {
+  color: var(--blanco);
+  font-size: 27px;
   font-weight: bold;
 }
 
-/* Modal */
-.modal-backdrop {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.5);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
+header .iconos-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.modal-content {
-  background:white;
-  padding:20px;
-  border-radius:10px;
-  width:350px;
+header .iconos-header i {
+  font-size: 26px;
+  color: var(--blanco);
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
-.bg-pastel { background: #fff5f7; }
-.btn-pastel { background: #ffd7e5; border: none; color: #000; }
-.btn-pink { background: #ff7aa2; color: white; border: none; }
-.btn-outline { background: transparent; border: 1px solid #ffd7e5; color: #333; }
+header .iconos-header i:hover {
+  transform: scale(1.08);
+}
 
-.modal-backdrop 
-
-.card { border-radius: 12px; }
-
-.pedido-confirmado-container {
-  max-width: 500px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 2px solid #4caf50;
+/* =========================================
+   BOTONES
+   ========================================= */
+button {
+  background: var(--rojo-btn);
+  color: var(--blanco);
+  padding: 10px 15px;
+  border: none;
   border-radius: 10px;
-  background-color: #f9fff9;
-  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
 }
 
-.pedido-confirmado-title {
-  color: #4caf50;
+button:hover {
+  background: #ff5179;
+  transform: translateY(-2px);
 }
 
-.pedido-info p {
-  font-size: 16px;
+/* =========================================
+   MENÚ DE PLATOS
+   ========================================= */
+.menu-contenedor {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.plato-card {
+  background: var(--blanco);
+  padding: 15px;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px var(--sombras);
+  transition: 0.25s ease;
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+
+.plato-card:hover {
+  transform: scale(1.03);
+  border-color: var(--rosa);
+}
+
+.plato-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.plato-card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--negro-suave);
+}
+
+.plato-card p {
+  color: var(--gris);
+  font-size: 15px;
   margin: 5px 0;
 }
 
-.btn-continuar {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.btn-continuar:hover {
-  background-color: #45a049;
-}
-
-/* Header fijo y sólido */
-.header-sticky {
-  position: sticky;
+/* =========================================
+   CARRITO LATERAL
+   ========================================= */
+.carrito {
+  position: fixed;
   top: 0;
-  z-index: 999;
-  background: linear-gradient(90deg, #ffedf0, #fff0f6); /* degradado */
-  background-color: #fff; /* fallback sólido para que no sea transparente */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  right: 0;
+  width: 330px;
+  height: 100%;
+  background: var(--rosa-suave);
+  box-shadow: -5px 0 20px var(--sombras);
+  padding: 20px;
+  overflow-y: auto;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  animation: slideIn 0.4s ease forwards;
 }
 
-/* Opcional: que links no cambien al scroll */
-.header-sticky a {
-  color: #d63384; 
-  text-decoration: none;
-  font-weight: 600;
+@keyframes slideIn {
+  from {
+    right: -350px;
+  }
+
+  to {
+    right: 0;
+  }
 }
 
-.header-sticky a:hover {
-  text-decoration: underline;
+.carrito h2 {
+  color: var(--negro-suave);
+  margin-bottom: 15px;
+}
+
+.item-carrito {
+  background: var(--blanco);
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 10px var(--sombras);
+}
+
+.total-carrito {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 2px dashed var(--rosa);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* =========================================
+   MODALES (FORM CLIENTE, FACTURA)
+   ========================================= */
+.modal {
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-contenido {
+  background: var(--blanco);
+  width: 90%;
+  max-width: 430px;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px var(--sombras);
+  animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-contenido h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: var(--negro-suave);
+}
+
+.modal-contenido input,
+.modal-contenido select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 2px solid var(--rosa);
+  background: var(--rosa-suave);
+  outline: none;
+}
+
+/* =========================================
+   FACTURA
+   ========================================= */
+.factura-container {
+  padding: 20px;
+  max-width: 450px;
+  margin: auto;
+}
+
+.factura-container h2 {
+  text-align: center;
+  color: var(--negro-suave);
+}
+
+.factura-box {
+  background: var(--blanco);
+  padding: 15px;
+  border-radius: 18px;
+  box-shadow: 0 3px 12px var(--sombras);
+}
+
+/* =========================================
+   PEDIDO CONFIRMADO
+   ========================================= */
+.confirmado {
+  text-align: center;
+  padding: 30px;
+}
+
+.confirmado h2 {
+  font-size: 26px;
+  color: var(--negro-suave);
+}
+
+.confirmado p {
+  font-size: 18px;
+  color: var(--gris);
+}
+
+/* =========================================
+   FORZAR COLORES PASTEL A LOS BOTONES
+   ========================================= */
+
+/* Para cualquier botón, incluyendo Bootstrap */
+button,
+.btn,
+.btn-pink {
+  background: var(--rojo-btn) !important;
+  color: var(--blanco) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  padding: 10px 15px !important;
+  transition: 0.2s ease;
+}
+
+button:hover,
+.btn:hover,
+.btn-pink:hover {
+  background: #ff5179 !important;
+  transform: translateY(-2px);
+}
+
+/* Botón secundario */
+.btn-secondary {
+  background: var(--gris) !important;
+  color: var(--blanco) !important;
+}
+
+.btn-secondary:hover {
+  background: #6b6b6b !important;
 }
