@@ -11,6 +11,8 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
+
+
 // -------------------------
 // Config ES Modules
 // -------------------------
@@ -130,7 +132,7 @@ app.post("/pedidos", async (req, res) => {
     const doc = new PDFDocument({ margin: 30 });
     doc.pipe(fs.createWriteStream(pdfPath));
 
-    doc.fontSize(20).text("🧾 Boleta Delicias Rápidas", { align: "center" });
+    doc.fontSize(20).text("Boleta Delicias Rápidas", { align: "center" });
     doc.moveDown();
     doc.fontSize(14).text(`Mesa: ${pedidoPop.cliente.mesa}`);
     doc.text(`Cliente: ${pedidoPop.cliente.nombre}`);

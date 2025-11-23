@@ -7,6 +7,7 @@ import Factura from "./componentes/Factura";
 import PedidoConfirmado from "./componentes/PedidoConfirmado";
 import AdminPanel from "./componentes/AdminPanel";
 import MotorizadoPanel from "./componentes/MotorizadoPanel";
+import Registro from "./componentes/Registro";
 import type { Plato, Pedido, Cliente } from "./Types";
 import "./App.css";
 
@@ -25,6 +26,8 @@ function App() {
   const [loginUser, setLoginUser] = useState("");
   const [loginPass, setLoginPass] = useState("");
   const [logged, setLogged] = useState(false);
+  const [mostrarRegistro, setMostrarRegistro] = useState(false);
+
 
   // Modal de agregar producto
   const [showModal, setShowModal] = useState(false);
@@ -184,6 +187,7 @@ function App() {
       <Header mesa={mesa} abrirLogin={() => setMostrarLogin(true)} />
 
       {/* LOGIN MODAL */}
+      
       {mostrarLogin && (
   <div className="login-modal">
     <div className="login-box">
@@ -213,9 +217,25 @@ function App() {
       >
         Cancelar
       </button>
+
+      <button
+  className="btn btn-outline-primary mt-2 w-100"
+  onClick={() => setMostrarRegistro(true)}
+>
+  Registrarse
+</button>
+
     </div>
   </div>
+  
+  
 )}
+
+{mostrarRegistro && (
+  <Registro onClose={() => setMostrarRegistro(false)} />
+)}
+
+
       <main className="max-w-6xl mx-auto px-3">
 
         {/* MODAL AGREGAR PRODUCTO */}
