@@ -185,39 +185,82 @@ function App() {
 
       {/* LOGIN MODAL */}
       {mostrarLogin && (
-        <div className="login-modal">
-          <div className="login-box">
-            <h3>Iniciar sesión</h3>
+  <div className="login-modal">
+    <div className="login-box">
+      <h3>Iniciar sesión</h3>
 
-            <input
-              className="form-control mb-2"
-              placeholder="Usuario"
-              value={loginUser}
-              onChange={(e) => setLoginUser(e.target.value)}
-            />
-            <input
-              className="form-control mb-2"
-              placeholder="Contraseña"
-              type="password"
-              value={loginPass}
-              onChange={(e) => setLoginPass(e.target.value)}
-            />
+      <input
+        className="form-control mb-2"
+        placeholder="Usuario"
+        value={loginUser}
+        onChange={(e) => setLoginUser(e.target.value)}
+      />
+      <input
+        className="form-control mb-2"
+        placeholder="Contraseña"
+        type="password"
+        value={loginPass}
+        onChange={(e) => setLoginPass(e.target.value)}
+      />
 
-            <button className="btn btn-pink w-100" onClick={login}>
-              Ingresar
-            </button>
+      <button className="btn btn-pink w-100" onClick={login}>
+        Ingresar
+      </button>
 
-            <button
-              className="btn btn-secondary mt-2 w-100"
-              onClick={() => setMostrarLogin(false)}
-            >
-              Cancelar
-            </button>
-          </div>
-        </div>
-      )}
-
+      <button
+        className="btn btn-secondary mt-2 w-100"
+        onClick={() => setMostrarLogin(false)}
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+)}
       <main className="max-w-6xl mx-auto px-3">
+
+        {/* MODAL AGREGAR PRODUCTO */}
+{showModal && (
+  <div className="modal-overlay" onClick={() => setShowModal(false)}>
+    <div className="modal-content" onClick={e => e.stopPropagation()}>
+      <button className="modal-close" onClick={() => setShowModal(false)}>
+        &times;
+      </button>
+      <h2>Agregar Producto</h2>
+      <input
+        type="text"
+        placeholder="Nombre del producto"
+        value={nombreProducto}
+        onChange={(e) => setNombreProducto(e.target.value)}
+        className="form-control mb-2"
+      />
+      <input
+        type="text"
+        placeholder="Descripción"
+        value={descripcionProducto}
+        onChange={(e) => setDescripcionProducto(e.target.value)}
+        className="form-control mb-2"
+      />
+      <input
+        type="number"
+        placeholder="Precio"
+        value={precioProducto}
+        onChange={(e) => setPrecioProducto(Number(e.target.value))}
+        className="form-control mb-2"
+      />
+      <input
+        type="text"
+        placeholder="URL Imagen"
+        value={urlProducto}
+        onChange={(e) => setUrlProducto(e.target.value)}
+        className="form-control mb-2"
+      />
+      <button className="btn btn-pink w-100" onClick={crearPlatoBackend}>
+        Agregar
+      </button>
+    </div>
+  </div>
+)}
+
 
         {/* ROLES */}
         {logged && rol === "admin" && <AdminPanel />}
