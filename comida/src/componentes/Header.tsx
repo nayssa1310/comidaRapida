@@ -1,6 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import '../App.css'
+import { FaUser } from "react-icons/fa";
+import "../App.css";
 
 interface HeaderProps {
   mesa: string;
@@ -9,27 +8,28 @@ interface HeaderProps {
 
 export default function Header({ mesa, abrirLogin }: HeaderProps) {
   return (
-    <header className="header-sticky p-3 mb-4 shadow">
-      <div className="container d-flex justify-content-between align-items-center">
+    <header className="header">
+      <div className="header-container">
 
-        <div className="d-flex align-items-center gap-2">
-          <img src="/logo.png" alt="Logo" width={50} />
-          <h1 className="text-pink-700 fw-bold">Delicias Rápidas</h1>
+        {/* LOGO + NOMBRE */}
+        <div className="header-left">
+          <img src="/logo.png" alt="Logo" className="header-logo" />
+          <h1 className="header-title">Delicias Rápidas</h1>
         </div>
 
-        <div className="d-flex gap-3 align-items-center">
-          <span className="fw-bold">Mesa: {mesa}</span>
-          <nav className="d-flex gap-3">
-            <a href="#" className="text-decoration-none text-pink-700 fw-semibold">Inicio</a>
-            <a href="#" className="text-decoration-none text-pink-700 fw-semibold">Menú</a>
-            <a href="#" className="text-decoration-none text-pink-700 fw-semibold">Contacto</a>
-          </nav>
-        </div>
+        {/* MENÚ */}
+        <nav className="header-nav">
+          <a href="#" className="nav-link">Inicio</a>
+          <a href="#" className="nav-link">Menú</a>
+          <a href="#" className="nav-link">Contacto</a>
+        </nav>
+
+        {/* DERECHA */}
+        <div className="header-right">
         
-        <div className="iconos-header">
-          <FontAwesomeIcon
-            icon={faUser}
-            style={{ cursor: "pointer", color: "#d63384", fontSize: "1.25rem" }}
+
+          <FaUser
+            className="icon-login"
             onClick={abrirLogin}
           />
         </div>

@@ -406,3 +406,189 @@ button:hover,
   background: none;
 }
 
+/* ========== HEADER GENERAL ========== */
+.header {
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/* Contenedor interno */
+.header-container {
+  width: 95%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+/* ========== IZQUIERDA: LOGO + TÍTULO ========== */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-logo {
+  width: 55px;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #d63384;
+}
+
+
+/* ========== MENÚ ========== */
+.header-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  font-weight: 600;
+  color: #d63384;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.nav-link:hover {
+  color: #b0266b;
+}
+
+
+/* ========== DERECHA: MESA Y LOGIN ========== */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.mesa-text {
+  font-weight: bold;
+  color: #444;
+}
+
+/* Icono Login */
+.icon-login {
+  font-size: 1.7rem;
+  color: #d63384;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.icon-login:hover {
+  transform: scale(1.2);
+  color: #b0266b;
+}
+
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .header-nav {
+    gap: 15px;
+  }
+}
+
+
+/* =========================================
+   ADMIN PANEL — GRID DE PRODUCTOS
+ ========================================= */
+
+.admin-container {
+  padding: 2rem;
+}
+
+.btn-pink {
+  background-color: #ff6b8b;
+  color: white;
+  border: none;
+}
+
+.btn-pink:hover {
+  background-color: #d63384;
+}
+
+/* GRID */
+.admin-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.admin-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
+}
+
+.admin-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.precio {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #d63384;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #d63384;
+}
+
