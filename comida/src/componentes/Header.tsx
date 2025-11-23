@@ -6,7 +6,7 @@ interface HeaderProps {
   abrirLogin: () => void;
 }
 
-export default function Header({ mesa, abrirLogin }: HeaderProps) {
+export default function Header({  abrirLogin }: HeaderProps) {
   return (
     <header className="header">
       <div className="header-container">
