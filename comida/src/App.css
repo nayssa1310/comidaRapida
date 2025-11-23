@@ -267,11 +267,7 @@ button:hover {
   color: var(--gris);
 }
 
-/* =========================================
-   FORZAR COLORES PASTEL A LOS BOTONES
-   ========================================= */
 
-/* Para cualquier botón, incluyendo Bootstrap */
 button,
 .btn,
 .btn-pink {
@@ -299,4 +295,19 @@ button:hover,
 
 .btn-secondary:hover {
   background: #6b6b6b !important;
+}
+
+.icono-login {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.login-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--rosa); 
+  text-decoration: none;
 }
