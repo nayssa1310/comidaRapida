@@ -10,18 +10,13 @@ import PDFDocument from "pdfkit";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import authRoutes from "./routes/auth.js";
 
-
-
-// -------------------------
-// Config ES Modules
-// -------------------------
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// -------------------------
 // Modelos
-// -------------------------
+
 const PlatoSchema = new mongoose.Schema({
   nombre: { type: String, required: true },
   descripcion: String,
@@ -49,29 +44,22 @@ const Plato = mongoose.model("Plato", PlatoSchema);
 const Cliente = mongoose.model("Cliente", ClienteSchema);
 const Pedido = mongoose.model("Pedido", PedidoSchema);
 
-// -------------------------
 // Carpeta PDFs
-// -------------------------
 const BOLETAS_DIR = path.join(__dirname, "boletas");
 if (!fs.existsSync(BOLETAS_DIR)) fs.mkdirSync(BOLETAS_DIR);
 
-// -------------------------
 // App
-// -------------------------
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use("/auth", authRoutes);
 
-// -------------------------
 // Conexión MongoDB
-// -------------------------
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("Conectado a MongoDB"))
   .catch(err => console.error("Error Mongo:", err));
 
-// -------------------------
 // Endpoints Platos
-// -------------------------
 app.get("/platos", async (req, res) => {
   try {
     const platos = await Plato.find();
@@ -92,10 +80,7 @@ app.post("/platos", async (req, res) => {
     res.status(500).json({ error: "No se pudo guardar el plato" });
   }
 });
-
-// -------------------------
 // Endpoints Pedidos
-// -------------------------
 app.post("/pedidos", async (req, res) => {
   try {
     const { cliente: clienteData, platos: platosData, total, pagado, estado } = req.body;
@@ -115,7 +100,7 @@ app.post("/pedidos", async (req, res) => {
     // Guardar pedido
     const pedido = new Pedido({
       cliente: cliente._id,
-      platos: platosData.map(p => p._id), // Enviar objetos con _id desde el frontend
+      platos: platosData.map(p => p._id),
       total,
       pagado,
       estado
@@ -132,7 +117,7 @@ app.post("/pedidos", async (req, res) => {
     const doc = new PDFDocument({ margin: 30 });
     doc.pipe(fs.createWriteStream(pdfPath));
 
-    doc.fontSize(20).text("Boleta Delicias Rápidas", { align: "center" });
+    doc.fontSize(20).text(" Boleta Delicias Rápidas", { align: "center" });
     doc.moveDown();
     doc.fontSize(14).text(`Mesa: ${pedidoPop.cliente.mesa}`);
     doc.text(`Cliente: ${pedidoPop.cliente.nombre}`);
@@ -160,6 +145,54 @@ app.post("/pedidos", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error al guardar pedido" });
+  }
+});
+
+// ---------------- GET pedidos para panel ----------------
+app.get("/pedidos", async (req, res) => {
+  try {
+    const pedidos = await Pedido.find()
+      .populate("cliente")
+      .populate("platos")
+      .lean();
+    res.json(pedidos);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error obteniendo pedidos" });
+  }
+});
+
+// ---------------- Registrar pago ----------------
+app.put("/pedidos/pago/:id", async (req, res) => {
+  try {
+    const { pagado, metodoPago } = req.body;
+    const pedido = await Pedido.findById(req.params.id);
+    if (!pedido) return res.status(404).json({ error: "Pedido no encontrado" });
+
+    pedido.pagado += pagado;
+    pedido.metodoPago = metodoPago || pedido.metodoPago;
+    await pedido.save();
+
+    res.json({ mensaje: "Pago registrado", pedido });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error registrando pago" });
+  }
+});
+
+// ---------------- Marcar pedido entregado ----------------
+app.put("/pedidos/entregado/:id", async (req, res) => {
+  try {
+    const pedido = await Pedido.findById(req.params.id);
+    if (!pedido) return res.status(404).json({ error: "Pedido no encontrado" });
+
+    pedido.estado = "entregado";
+    await pedido.save();
+
+    res.json({ mensaje: "Pedido entregado", pedido });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error actualizando estado" });
   }
 });
 

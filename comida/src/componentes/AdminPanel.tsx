@@ -23,27 +23,24 @@ export default function AdminPanel() {
   const [stock, setStock] = useState<number>(0);
   const [imagen, setImagen] = useState("");
 
-  // =======================================================
+
   // CARGAR PRODUCTOS
-  // =======================================================
   const cProductos = async () => {
     const res = await fetch(`${API}/platos`);
     const data = await res.json();
     setProductos(data);
   };
 
-  // =======================================================
   // CARGAR PEDIDOS
-  // =======================================================
+
   const cPedidos = async () => {
     const res = await fetch(`${API}/pedidos`);
     const data = await res.json();
     setPedidos(data);
   };
 
-  // =======================================================
   // CARGAR CLIENTES
-  // =======================================================
+
   const cClientes = async () => {
     const res = await fetch(`${API}/clientes`);
     const data = await res.json();
@@ -56,9 +53,9 @@ export default function AdminPanel() {
     cClientes();
   }, []);
 
-  // =======================================================
+
   // CREAR PRODUCTO
-  // =======================================================
+ 
   const agregarProducto = async () => {
     if (!nombre || !descripcion || !precio || !imagen) {
       return alert("Completa todos los campos");
@@ -94,10 +91,7 @@ export default function AdminPanel() {
   return (
     <div className="container-fluid mt-3">
       <div className="row">
-
-        {/* =======================================================
-            SIDEBAR
-        ======================================================= */}
+s
         <div className="col-12 col-md-3 col-lg-2 bg-light p-3 rounded shadow-sm">
           <h4 className="text-center mb-4 text-primary fw-bold">Admin</h4>
 
@@ -132,14 +126,8 @@ export default function AdminPanel() {
           )}
         </div>
 
-        {/* =======================================================
-            CONTENIDO
-        ======================================================= */}
         <div className="col-12 col-md-9 col-lg-10">
 
-          {/* =======================================================
-              VISTA PRODUCTOS
-          ======================================================= */}
           {vista === "productos" && (
             <>
               <h3 className="mt-3 mb-3">Productos</h3>
@@ -174,9 +162,6 @@ export default function AdminPanel() {
             </>
           )}
 
-          {/* =======================================================
-              VISTA PEDIDOS
-          ======================================================= */}
           {vista === "pedidos" && (
             <>
               <h3 className="mt-3 mb-3">Pedidos</h3>
@@ -206,9 +191,6 @@ export default function AdminPanel() {
             </>
           )}
 
-          {/* =======================================================
-              VISTA CLIENTES
-          ======================================================= */}
           {vista === "clientes" && (
             <>
               <h3 className="mt-3 mb-3">Clientes Registrados</h3>
@@ -236,9 +218,6 @@ export default function AdminPanel() {
         </div>
       </div>
 
-      {/* =======================================================
-          MODAL AGREGAR PRODUCTO
-      ======================================================= */}
       <Modal show={showAdd} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Agregar producto</Modal.Title>

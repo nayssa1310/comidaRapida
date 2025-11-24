@@ -1,11 +1,11 @@
+import mongoose from 'mongoose';
 
-const mongoose = require("mongoose");
-
-const ClienteSchema = new mongoose.Schema({
-  nombre: { type: String, required: true },
-  telefono: { type: String, required: true },
-  direccion: { type: String, required: true },
-  mesa: { type: String, required: true },
+const clienteSchema = new mongoose.Schema({
+    nombre: { type: String, required: true },
+    telefono: { type: String, required: true },
+    direccion: { type: String, required: true },
+    mesa: { type: String },
+    pagado: { type: Number, default: 0 }
 }, { timestamps: true });
 
-module.exports = mongoose.models.Cliente || mongoose.model("Cliente", ClienteSchema);
+export default mongoose.model('Cliente', clienteSchema);
